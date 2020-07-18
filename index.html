@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="validate.js"></script>
+    <title>Registration Form</title>
+</head>
+
+<body onload="menu();">
+
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="display-4">UNIVERSITY</h1>
+            <p class="lead">Student Registration Form</p>
+            <hr class="my-4">
+        </div>
+    </div>
+    <div class="container">
+
+        <h1 class="display-4">Registration Form</h1>
+        <h6 class="lead text-danger">(*)Fill all required fields</h6>
+        <hr class="my-4">
+
+
+        <form name="myForm" id="myForm" onsubmit="return validateForm()">
+            <div class="form-row row-content">
+                <div class="col-12 col-md-8 offset-md-2">
+                    <div class="form-group">
+                        <label for="fname">First Name <span class="text-danger">*</span></label>
+                        <input id="fname" class="form-control" type="text" name="fname" onkeypress="checkText(event)"
+                            maxlength="25">
+                        <div id="fnameError" class="alert alert-danger" style="display: none;">
+                            First Name is required
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row row-content">
+                <div class="col-12 col-md-8 offset-md-2">
+                    <div class="form-group">
+                        <label for="lname">Last Name <span class="text-danger">*</span></label>
+                        <input id="lname" class="form-control" type="text" name="lname" onkeypress="checkText(event)"
+                            maxlength="25">
+                        <div id="lnameError" class="alert alert-danger" style="display: none;">
+                            Last Name is required
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row row-content">
+                <div class="col-12 col-md-8 offset-md-2">
+                    <div class="form-group">
+                        <label for="address">Address <span class="text-danger">*</span></label>
+                        <textarea id="address" class="form-control" name="address" maxlength="50"></textarea>
+                        <div id="addressError" class="alert alert-danger" style="display: none;">
+                            Address is required
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row row-content">
+                <div class="col-12 col-md-8 offset-md-2">
+                    <div class="form-group">
+                        <label for="email">Email <span class="text-danger">*</span></label>
+                        <input type="email" id="email" class="form-control" name="email">
+                        <div id="emailError" class="alert alert-danger" style="display: none;">
+                            Email is required
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row row-content">
+                <div class="form-group col-md-4 offset-md-2">
+                    <label for="countrySelect">State <span class="text-danger">*</span></label>
+                    <select id="countrySelect" size="1" class="form-control" onchange="makeSubmenu(this.value)">
+                        <option value="" selected>Choose State</option>
+
+                    </select>
+                    <div id="countrySelectError" class="alert alert-danger" style="display: none;">
+                        State is required
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="citySelect">City <span class="text-danger">*</span></label>
+                    <select id="citySelect" size="1" class="form-control">
+                        <option value="" selected>Choose City</option>
+                        <option></option>
+                    </select>
+                    <div id="citySelectError" class="alert alert-danger" style="display: none;">
+                        City is required
+                    </div>
+                </div>
+            </div>
+            <div class="form-row justify-content-start">
+                <div class="col-12 col-md-4 offset-md-2">
+                    <div class="form-group">
+                        <label for="mNo">Mobile Number <span class="text-danger">*</span></label>
+                        <input id="mNo" class="form-control" type="number" name="mNo" maxlength="11">
+                        <div id="mNoError" class="alert alert-danger" style="display: none;">
+                            Mobile Number is required
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="form-group">
+                        <label for="eCourse">Enrolled Course <span class="text-danger">*</span></label>
+                        <input id="eCourse" class="form-control" type="text" name="eCourse" maxlength="5">
+                        <div id="eCourseError" class="alert alert-danger" style="display: none;">
+                            Course is required
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row row-content">
+                <div class="col-12 col-md-4 offset-md-2">
+                    <div class="form-group">
+                        <label for="dot">Date Of Test <span class="text-danger">*</span></label>
+                        <input type="date" id="dot" class="form-control" name="dot">
+
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="form-group">
+                        <label for="wtm">Written Test Marks <span class="text-danger">*</span></label>
+                        <input type="number" id="wtm" class="form-control" name="wtm">
+                        <div id="wtmError" class="alert alert-danger" style="display: none;">
+                            Marks is required
+                        </div>
+                        <div id="wtmError2" class="alert alert-danger" style="display: none;">
+                            Marks should be between 50 and 100
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="success" class="alert alert-success alert-dismissible fade show" role="alert"
+                style="display: none;">
+                <strong>Thank you for submitting your information,
+                    University Admission staff will get back to you
+                    shortly</strong>
+
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true" onclick="location.reload();">&times;</span>
+                </button>
+            </div>
+
+            <div class="form-row">
+                <div class="col-12 col-md-2 offset-md-5">
+                    <button type="submit" value="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>
